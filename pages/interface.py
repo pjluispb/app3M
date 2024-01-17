@@ -63,6 +63,8 @@ edited_df = st.data_editor(
         ),
     },
     hide_index=True,
+    disabled=("Módulo", "Status"),
+    num_rows="dynamic",
 )
 
 accion = edited_df.loc[edited_df["ejecutar"]]
