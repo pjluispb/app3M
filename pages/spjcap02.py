@@ -203,6 +203,8 @@ except:
     'error configurando phs'
 ph0.info('ph0')
 with ph0.container():
+    regresar = st.button('volver', use_container_width=True, key='volver1')
+    if regresar: switch_page('interface')
     st.title('Siguiendo las pisadas de Jesús')
     st.markdown("---")
     st.markdown("## CAPÍTULO 2 ")
@@ -640,4 +642,5 @@ if st.session_state.ea2 == 'N3H':
             butform = st.form_submit_button('Enviar/Actualizar respuestas de aplicación para evaluación', use_container_width=True)
         
 
-        
+regresar = st.button('volver', use_container_width=True, key='volver2')
+if regresar: switch_page('interface') 
