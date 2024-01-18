@@ -160,6 +160,9 @@ lista_2 = [
     # Agrega más preguntas aquí
 ]
 
+nombreu = st.session_state['nombreu']
+claveu = st.session_state['claveu']
+
 try:         #inicializa var de session
     if st.session_state.inicio==True:
         inicializa()
@@ -205,6 +208,7 @@ ph0.info('ph0')
 with ph0.container():
     regresar = st.button('volver', use_container_width=True, key='volver1')
     if regresar: switch_page('interface')
+    st.markdown(':green[ $ \\bold {Hola \,\,\,' + nombreu + '}$]')
     st.title('Siguiendo las pisadas de Jesús')
     st.markdown("---")
     st.markdown("## CAPÍTULO 2 ")

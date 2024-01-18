@@ -33,10 +33,12 @@ def on_change(df):
         for modulo in modulo_cambios:
             st.write(modulo)
 
+nombreu = st.session_state['nombreu']
+claveu = st.session_state['claveu']
 
 st.title('App3M')
 st.header('Monitoreo y Mentoreo de Ministros ASIGLEH')
-st.subheader('Bienvenido')
+st.subheader('Bienvenido '+nombreu)
 
 
 df = pd.DataFrame(
@@ -71,8 +73,6 @@ accion = edited_df.loc[edited_df["ejecutar"]]
 jsaccion = accion.to_numpy()
 swpa = ''
 try:
-    # jsaccion
-    # jsaccion[0,0], ' <---> ',jsaccion[0,2]
     if jsaccion[0,2]=='En espera':
         st.toast('Aún No puedes acceder a este múdulo')
     elif jsaccion[0,2]=='Activo - Editable':
@@ -87,38 +87,9 @@ try:
             swpa = 'spjcap03'
 except:
     swpa = ''
-    #pass
 
 if swpa != '':
     switch_page(swpa)
 
 
-# st.write(accion.Módulo)
-#valor = accion.loc[0,'Módulo']
-#st.write(valor)
-#st.write(type(accion.Módulo))
-'***'
-'***'
-
-# # Crear el DataFrame
-# df2 = pd.DataFrame(
-#     [
-#        {"<link>Módulo</link>": "Datos Ministeriales", "ejecutar": False, "Status": 'Activo - Editable', 'progreso':50, },
-#        {"<link>Módulo</link>": "Siguiendo sus pasos - Capítulo 1", "ejecutar": False, "Status": "Activo - Editable", 'progreso':10, },
-#        {"<link>Módulo</link>": "Siguiendo sus pasos - Capítulo 2", "ejecutar": False, "Status": "En espera", 'progreso':5, },
-#    ]
-# )
-
-# # Mostrar el DataFrame en Streamlit
-# st.table(df2)
-
-# # Capturar el evento de clic en una celda
-# if st.session_state.clicked_row is not None:
-#     modulo_seleccionado = df2.loc[st.session_state.clicked_row, "<link>Módulo</link>"]
-#     st.write(f"Has seleccionado el módulo: {modulo_seleccionado}")
-
-# # Habilitar el clic en la tabla
-# st.write("Haz clic en una celda para seleccionar el módulo.")
-# st.write(df.style.set_table_attributes('class="dataframe"').format(
-#     {'ejecutar': lambda x: 'cursor: pointer'}), unsafe_allow_html=True)
 

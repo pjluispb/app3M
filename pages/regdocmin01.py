@@ -113,6 +113,9 @@ nombreu = reg['nombreu']
 newvalea, updvalea = [], []
 
 st.write(reg)
+regresar = st.button('volver', use_container_width=True, key='volver1')
+if regresar: switch_page('interface')
+
 st.markdown(':green[ $ \\bold {Hola \,\,\,' + reg['nombreu'] + '}$]')
 
 colt1, colt2 = st.columns((1,3))
@@ -170,7 +173,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
         nombreuF = '101' + '-' + rkey
         seccionF = 'fotpersonal'
         namepic = 'AFotPer'+nombreuF + '-' + seccionF + '-' + str(valif) + '-' + str(contF) + '.png'
-    if vfotoper=='-':
+    if vfotoper=='-' or vfotoper=='':
         chefot = st.checkbox(label='Foto personal de frente')
         if chefot:
             if nombre == '-' or apellido == '-':
@@ -227,7 +230,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
         nombreuF = '101' + '-' + rkey
         seccionF = 'fotoID'
         idpic = 'AFotID'+nombreuF + '-' + seccionF + '-' + str(valif) + '-' + str(contF) + '.png'
-    if vfotoID=='-':
+    if vfotoID=='-' or vfotoID=='':
         chefotID = st.checkbox(label='Foto de documento de Identidad (Cédula u otro)')
         if chefotID:
             if nombre == '-' or apellido == '-':
@@ -419,20 +422,23 @@ with st.expander(':orange[$ \large Ministerios/iglesia\, que\, preside\, ó\\new
     for k,v in reg.items():
         if 'IgleMin#' in k:
             #k, v
-            conIgleMin = k.split('#')[1]
-            claveIgleMin = 'ParMinHoy#'+str(conIgleMin)+' : '
-            st.markdown('#### 📌Registro #:  '+str(conIgleMin))
+            try:
+                conIgleMin = k.split('#')[1]
+                claveIgleMin = 'ParMinHoy#'+str(conIgleMin)+' : '
+                st.markdown('#### 📌Registro #:  '+str(conIgleMin))
 
-            conIgleMin= int(conIgleMin)
+                conIgleMin= int(conIgleMin)
 
-            claveiglemin = 'iglemin-'+str(conIgleMin)
+                claveiglemin = 'iglemin-'+str(conIgleMin)
 
-            valigleminNom = st.text_input(label=':blue[$ \\bold{Nombre}  $]', value=v[0].split(':')[1], key=claveiglemin+'nombre')
-            valigleminDir = st.text_input(label=':blue[$ \\bold{Dirección}  $]', value=v[1].split(':')[1], key=claveiglemin+'direccion')
-            valigleminNiv =  st.text_input(label=':blue[$ \\bold{Nivel \, Ministerial}  $]', value=v[2].split(':')[1], key=claveiglemin+'nivmin')
-            valigleminDes = st.text_area(label=':blue[$ \\bold{Descripción}  $]', value = v[3].split(':')[1], key=claveiglemin+'desc')
-            #v
-            st.write('***')
+                valigleminNom = st.text_input(label=':blue[$ \\bold{Nombre}  $]', value=v[0].split(':')[1], key=claveiglemin+'nombre')
+                valigleminDir = st.text_input(label=':blue[$ \\bold{Dirección}  $]', value=v[1].split(':')[1], key=claveiglemin+'direccion')
+                valigleminNiv =  st.text_input(label=':blue[$ \\bold{Nivel \, Ministerial}  $]', value=v[2].split(':')[1], key=claveiglemin+'nivmin')
+                valigleminDes = st.text_area(label=':blue[$ \\bold{Descripción}  $]', value = v[3].split(':')[1], key=claveiglemin+'desc')
+                #v
+                st.write('***')
+            except:
+                pass
 
 
     conIgleMin+=1
@@ -614,62 +620,65 @@ with st.expander(':orange[$\Large Trabajo\,\, ministerial$] :red[$\\bold(histori
     for k,v in reg.items():
         if 'TraMin#' in k:
             # k, v
-            conTraMin = k.split('#')[1]
-            claveTraMin = 'TraMin#'+str(conTraMin)+' : '
-            st.markdown('#### 📌Registro #:  '+str(conTraMin))
-            valTraMinNom = st.text_input(label=':blue[$ \\bold{Ministerio/Iglesia}  $]', value=v[0][20:], key=claveTraMin+'Ministerio/Iglesia')
-            valTiempo = v[1].split(':')[1]
-            valTiempoIni = int(valTiempo.split(',')[0].replace('(',''))
-            valTiempoFin = int(valTiempo.split(',')[1].replace(')',''))
-            valTraMinTiempo = st.slider(label=':blue[$ \\bold{Tiempo\, en\, el\, ministerio/iglesia}  $]', value=(valTiempoIni, valTiempoFin), min_value=valTiempoIni-10, max_value=valTiempoFin+10, key=claveTraMin+'Tiempo')
-            valTraMinOrg = st.text_input(label=':blue[$ \\bold {Organización\, /\, Iglesia\, /\, Ministerio}  $]', value=v[2][14:], key=claveTraMin+'Organización')
-            valTraMinDes = st.text_area(label=':blue[$ \\bold{Descripción\, del\, \\newline trabajo\, ministerial}  $]', value=v[3][13:], key=claveTraMin+'Descripción')
-            valTraMinRef =  st.text_area(label=':blue[$ \\bold{Referencias }  $]', value=v[4][13:], key=claveTraMin+'Referencias')
+            try:
+                conTraMin = k.split('#')[1]
+                claveTraMin = 'TraMin#'+str(conTraMin)+' : '
+                st.markdown('#### 📌Registro #:  '+str(conTraMin))
+                valTraMinNom = st.text_input(label=':blue[$ \\bold{Ministerio/Iglesia}  $]', value=v[0][20:], key=claveTraMin+'Ministerio/Iglesia')
+                valTiempo = v[1].split(':')[1]
+                valTiempoIni = int(valTiempo.split(',')[0].replace('(',''))
+                valTiempoFin = int(valTiempo.split(',')[1].replace(')',''))
+                valTraMinTiempo = st.slider(label=':blue[$ \\bold{Tiempo\, en\, el\, ministerio/iglesia}  $]', value=(valTiempoIni, valTiempoFin), min_value=valTiempoIni-10, max_value=valTiempoFin+10, key=claveTraMin+'Tiempo')
+                valTraMinOrg = st.text_input(label=':blue[$ \\bold {Organización\, /\, Iglesia\, /\, Ministerio}  $]', value=v[2][14:], key=claveTraMin+'Organización')
+                valTraMinDes = st.text_area(label=':blue[$ \\bold{Descripción\, del\, \\newline trabajo\, ministerial}  $]', value=v[3][13:], key=claveTraMin+'Descripción')
+                valTraMinRef =  st.text_area(label=':blue[$ \\bold{Referencias }  $]', value=v[4][13:], key=claveTraMin+'Referencias')
 
-            #st.write(v[5], ' * ', v[5].split(':')[1], len(v[5].split(':')[1]))
-            #if v[5].split(':')[1] in [' -', '-', '', '---', ' --- ', '--- ', None]:
-            if len(v[5].split(':')[1]) < 10:
-                #contado = k.split('#')[1]
-                st.session_state['TraMin#'+str(conTraMin)+'foto'] = '---'
-                che2 = st.checkbox(label='Foto de referencia de trabajo ministerial', key='ch3'+str(k))
-                if che2:
-                    img_file_buffer = st.camera_input("Take a picture")
-                    if img_file_buffer is not None: 
-                        vali = random.randint(500,1000)
-                        npic = 'fotoref : 201-'+clave+'-'+nombreu+'-fotoTraMin-'+str(vali)+'-#'+conTraMin+'v1.png'
-                        with st.spinner('Espere un momento...se está guardando la foto'):
-                            bytes_data = img_file_buffer.getvalue()
-                            photosys.put(npic, bytes_data)
-                        st.success('listo!!!')
-                        v[5]=npic
-                        st.session_state['TraMin#'+str(conTraMin)+'foto'] = npic
-                        dbtest.update({k:v}, key=rkey)
-            else:
-                st.session_state['TraMin#'+str(conTraMin)+'foto'] = v[5]
-                v[5]
-                
-                imagenCer = photosys.get(v[5])
-                #st.stop()
-                content = imagenCer.read()
-                st.image(content)
-                st.caption(v[5])
-                cheact = st.checkbox(label='Actualizar foto de referencia de trabajo ministerial', key='ch7'+str(k))
-                if cheact:
-                    img_file_buffer = st.camera_input("Take a picture")
-                    if img_file_buffer is not None: 
-                        npic = v[5]
-                        with st.spinner('Espere un momento...se está guardando la foto'):
-                            bytes_data = img_file_buffer.getvalue()
-                            photosys.put(npic, bytes_data)
-                        st.success('listo!!!')
-                        st.session_state['clave'] = rkey
-                        switch_page('depaso1')
-                #st.write('***')
-            st.write('')
-            st.write('')
-            st.write('***')
-            st.write('')
-            st.write('')
+                #st.write(v[5], ' * ', v[5].split(':')[1], len(v[5].split(':')[1]))
+                #if v[5].split(':')[1] in [' -', '-', '', '---', ' --- ', '--- ', None]:
+                if len(v[5].split(':')[1]) < 10:
+                    #contado = k.split('#')[1]
+                    st.session_state['TraMin#'+str(conTraMin)+'foto'] = '---'
+                    che2 = st.checkbox(label='Foto de referencia de trabajo ministerial', key='ch3'+str(k))
+                    if che2:
+                        img_file_buffer = st.camera_input("Take a picture")
+                        if img_file_buffer is not None: 
+                            vali = random.randint(500,1000)
+                            npic = 'fotoref : 201-'+clave+'-'+nombreu+'-fotoTraMin-'+str(vali)+'-#'+conTraMin+'v1.png'
+                            with st.spinner('Espere un momento...se está guardando la foto'):
+                                bytes_data = img_file_buffer.getvalue()
+                                photosys.put(npic, bytes_data)
+                            st.success('listo!!!')
+                            v[5]=npic
+                            st.session_state['TraMin#'+str(conTraMin)+'foto'] = npic
+                            dbtest.update({k:v}, key=rkey)
+                else:
+                    st.session_state['TraMin#'+str(conTraMin)+'foto'] = v[5]
+                    v[5]
+                    
+                    imagenCer = photosys.get(v[5])
+                    #st.stop()
+                    content = imagenCer.read()
+                    st.image(content)
+                    st.caption(v[5])
+                    cheact = st.checkbox(label='Actualizar foto de referencia de trabajo ministerial', key='ch7'+str(k))
+                    if cheact:
+                        img_file_buffer = st.camera_input("Take a picture")
+                        if img_file_buffer is not None: 
+                            npic = v[5]
+                            with st.spinner('Espere un momento...se está guardando la foto'):
+                                bytes_data = img_file_buffer.getvalue()
+                                photosys.put(npic, bytes_data)
+                            st.success('listo!!!')
+                            st.session_state['clave'] = rkey
+                            switch_page('depaso1')
+                    #st.write('***')
+                st.write('')
+                st.write('')
+                st.write('***')
+                st.write('')
+                st.write('')
+            except:
+                pass
     icontado = int(conTraMin)+1
     conTraMin = str(icontado)
     tm = 'TraMin#'+conTraMin
@@ -872,14 +881,17 @@ with st.expander(':orange[$\large  Participación\, actual\\newline en\, los\, m
     for k,v in reg.items():
         if 'ParMinHoy#' in k:
             #k, v
-            conParMinHoy = k.split('#')[1]
-            claveParMinHoy = 'ParMinHoy#'+str(conParMinHoy)+' : '
-            st.markdown('#### 📌Registro #:  '+str(conParMinHoy))
-            valNombreParMinHoy = st.text_input(label=':blue[$ \\bold{Ministerio/Departamento}  $]', value=v[0][26:], key=claveParMinHoy+'Ministerio/Departamento')
-            vaalNivelParMinHoy = st.select_slider(label=':blue[$ \\bold{Nivel \, de\, participación/relación\, en} $] :blue[$ \\bold{el\, ministerio/departamento}  $]', options=['ninguna', 'asisto', 'participo', 'líder', 'asesoro/superviso'], value=v[1][25:], key=claveParMinHoy+'NivelPar')
-            valDescribeParMinHoy = st.text_area(label=':blue[$ \\bold{Descripción}  $]', value=v[2][14:], key=claveParMinHoy+'Describe')
-            st.write('***')
-            st.write('')
+            try:
+                conParMinHoy = k.split('#')[1]
+                claveParMinHoy = 'ParMinHoy#'+str(conParMinHoy)+' : '
+                st.markdown('#### 📌Registro #:  '+str(conParMinHoy))
+                valNombreParMinHoy = st.text_input(label=':blue[$ \\bold{Ministerio/Departamento}  $]', value=v[0][26:], key=claveParMinHoy+'Ministerio/Departamento')
+                vaalNivelParMinHoy = st.select_slider(label=':blue[$ \\bold{Nivel \, de\, participación/relación\, en} $] :blue[$ \\bold{el\, ministerio/departamento}  $]', options=['ninguna', 'asisto', 'participo', 'líder', 'asesoro/superviso'], value=v[1][25:], key=claveParMinHoy+'NivelPar')
+                valDescribeParMinHoy = st.text_area(label=':blue[$ \\bold{Descripción}  $]', value=v[2][14:], key=claveParMinHoy+'Describe')
+                st.write('***')
+                st.write('')
+            except:
+                pass
 # =========================
 
     icontadopmh = int(conParMinHoy)+1
@@ -993,76 +1005,79 @@ with st.expander(':orange[$\Large Estudios\, eclesiásticos  $]'):
     for k,v in reg.items():
         if 'EstMin#' in k:
             #k, v
-            conEstMin = k.split('#')[1]
-            claveEstMin = 'EstMin#'+str(conEstMin)+' : '
-            #st.info('Registro #:  '+str(conEstMin)+'  👀  ', icon='📌')
-            st.markdown('#### 📌Registro #:  '+str(conEstMin))
-            valEstMinNom = st.text_input(label=':blue[$ \\bold{Nombre \,del \,curso/estudio \,eclesiastico}  $]', value=v[0][9:], key=claveEstMin+'Nombre')
-            
-            opcionesTipo = ['-', 'Bíblico', 'Discipular', 'Liderazgo', 'Teológico', 'Otra']
-            if v[1][7:] not in opcionesTipo:
-                opcionesTipo.append(v[1][7:])
-            valEstMinTipo = st.radio(label=':blue[$ \\bold{Tipo \,de \,curso}  $]', options=opcionesTipo, key=claveEstMin+'Tipo', index=opcionesTipo.index(v[1][7:]), horizontal=True)
-            
-            valEstMinInst = st.text_input(label=':blue[$ \\bold {Institución\, /\, Iglesia\, /\, Ministerio}  $]', value=v[2][14:], key=claveEstMin+'Institución')
-
-            valEstMinSede = st.text_input(label=':blue[$ \\bold {Sede\, /\, Lugar}  $]', value=v[3][6:], key=claveEstMin+'Sede')
-
-            valEstMinModo = st.select_slider(label=':blue[$ \\bold{Modalidad \,de \,estudio}  $]', options=['presencial', 'en línea /a distancia', 'híbrido'], value=v[4][7:], key=claveEstMin+'Modo')
-
-            valTiempo = v[5].split(':')[1]
-            valTiempoIni = int(valTiempo.split(',')[0].replace('(',''))
-            valTiempoFin = int(valTiempo.split(',')[1].replace(')',''))
-            valEstMinTiempo = st.slider(label=':blue[$ \\bold{Tiempo}  $]', value=(valTiempoIni, valTiempoFin), min_value=valTiempoIni-3, max_value=valTiempoFin+3, key=claveEstMin+'Tiempo')
-
-            valEstMinCert = st.text_input(label=':blue[$ \\bold {Certificado\, /\, Último \,  nivel \,alcanzado}  $]', value=v[6][20:], key=claveEstMin+'Certificado/Nivel')
-
-            #valfotoref = st.caption(v[7])
-            if len(v[8].split(':')[1]) < 10:
-                #contado = k.split('#')[1]
-                st.session_state['EstMin#'+str(conEstMin)+'foto'] = '---'
-                che4 = st.checkbox(label='Foto del certificado de estudio ministerial', key='ch5'+str(k))
-                if che4:
-                    img_file_buffer = st.camera_input("Toma la foto")
-                    if img_file_buffer is not None: 
-                        vali = random.randint(2500,4000)
-                        npic = 'Fotoref : 301-'+clave+'-'+nombreu+'-fotoEstMin-'+str(vali)+'-#'+conEstMin+'v1.png'
-                        with st.spinner('Espere un momento...se está guardando la foto'):
-                            bytes_data = img_file_buffer.getvalue()
-                            photosys.put(npic, bytes_data)
-                        st.success('listo!!!')
-                        v[8]=npic
-                        st.session_state['EstMin#'+str(conEstMin)+'foto'] = npic
-                        dbtest.update({k:v}, key=rkey)
-                        st.session_state['clave'] = rkey
-                        switch_page('depaso1')
-            else:
-                st.session_state['EstMin#'+str(conEstMin)+'foto'] = v[8]
-                #v[7]
+            try:
+                conEstMin = k.split('#')[1]
+                claveEstMin = 'EstMin#'+str(conEstMin)+' : '
+                #st.info('Registro #:  '+str(conEstMin)+'  👀  ', icon='📌')
+                st.markdown('#### 📌Registro #:  '+str(conEstMin))
+                valEstMinNom = st.text_input(label=':blue[$ \\bold{Nombre \,del \,curso/estudio \,eclesiastico}  $]', value=v[0][9:], key=claveEstMin+'Nombre')
                 
-                imagenCer = photosys.get(v[8])
-                #st.stop()
-                content = imagenCer.read()
-                st.image(content)
-                st.caption(v[7])
-                cheact = st.checkbox(label='Actualizar foto referencia del estudio ministerial', key='ch9'+str(k))
-                if cheact:
-                    img_file_buffer = st.camera_input("Toma la foto")
-                    if img_file_buffer is not None: 
-                        npic = v[8]
-                        with st.spinner('Espere un momento...se está guardando la foto'):
-                            bytes_data = img_file_buffer.getvalue()
-                            photosys.put(npic, bytes_data)
-                        st.success('listo!!!')
-                        st.session_state['clave'] = rkey
-                        switch_page('depaso1')
+                opcionesTipo = ['-', 'Bíblico', 'Discipular', 'Liderazgo', 'Teológico', 'Otra']
+                if v[1][7:] not in opcionesTipo:
+                    opcionesTipo.append(v[1][7:])
+                valEstMinTipo = st.radio(label=':blue[$ \\bold{Tipo \,de \,curso}  $]', options=opcionesTipo, key=claveEstMin+'Tipo', index=opcionesTipo.index(v[1][7:]), horizontal=True)
+                
+                valEstMinInst = st.text_input(label=':blue[$ \\bold {Institución\, /\, Iglesia\, /\, Ministerio}  $]', value=v[2][14:], key=claveEstMin+'Institución')
 
-            valEstMinDes = st.text_area(label=':blue[$ \\bold{Descripción\, del\, \\newline estudio\, ministerial}  $]', value=v[7][14:], key=claveEstMin+'Descripción')
-            st.write('')
-            st.write('')
-            st.write('***')
-            st.write('')
-            st.write('')
+                valEstMinSede = st.text_input(label=':blue[$ \\bold {Sede\, /\, Lugar}  $]', value=v[3][6:], key=claveEstMin+'Sede')
+
+                valEstMinModo = st.select_slider(label=':blue[$ \\bold{Modalidad \,de \,estudio}  $]', options=['presencial', 'en línea /a distancia', 'híbrido'], value=v[4][7:], key=claveEstMin+'Modo')
+
+                valTiempo = v[5].split(':')[1]
+                valTiempoIni = int(valTiempo.split(',')[0].replace('(',''))
+                valTiempoFin = int(valTiempo.split(',')[1].replace(')',''))
+                valEstMinTiempo = st.slider(label=':blue[$ \\bold{Tiempo}  $]', value=(valTiempoIni, valTiempoFin), min_value=valTiempoIni-3, max_value=valTiempoFin+3, key=claveEstMin+'Tiempo')
+
+                valEstMinCert = st.text_input(label=':blue[$ \\bold {Certificado\, /\, Último \,  nivel \,alcanzado}  $]', value=v[6][20:], key=claveEstMin+'Certificado/Nivel')
+
+                #valfotoref = st.caption(v[7])
+                if len(v[8].split(':')[1]) < 10:
+                    #contado = k.split('#')[1]
+                    st.session_state['EstMin#'+str(conEstMin)+'foto'] = '---'
+                    che4 = st.checkbox(label='Foto del certificado de estudio ministerial', key='ch5'+str(k))
+                    if che4:
+                        img_file_buffer = st.camera_input("Toma la foto")
+                        if img_file_buffer is not None: 
+                            vali = random.randint(2500,4000)
+                            npic = 'Fotoref : 301-'+clave+'-'+nombreu+'-fotoEstMin-'+str(vali)+'-#'+conEstMin+'v1.png'
+                            with st.spinner('Espere un momento...se está guardando la foto'):
+                                bytes_data = img_file_buffer.getvalue()
+                                photosys.put(npic, bytes_data)
+                            st.success('listo!!!')
+                            v[8]=npic
+                            st.session_state['EstMin#'+str(conEstMin)+'foto'] = npic
+                            dbtest.update({k:v}, key=rkey)
+                            st.session_state['clave'] = rkey
+                            switch_page('depaso1')
+                else:
+                    st.session_state['EstMin#'+str(conEstMin)+'foto'] = v[8]
+                    #v[7]
+                    
+                    imagenCer = photosys.get(v[8])
+                    #st.stop()
+                    content = imagenCer.read()
+                    st.image(content)
+                    st.caption(v[7])
+                    cheact = st.checkbox(label='Actualizar foto referencia del estudio ministerial', key='ch9'+str(k))
+                    if cheact:
+                        img_file_buffer = st.camera_input("Toma la foto")
+                        if img_file_buffer is not None: 
+                            npic = v[8]
+                            with st.spinner('Espere un momento...se está guardando la foto'):
+                                bytes_data = img_file_buffer.getvalue()
+                                photosys.put(npic, bytes_data)
+                            st.success('listo!!!')
+                            st.session_state['clave'] = rkey
+                            switch_page('depaso1')
+
+                valEstMinDes = st.text_area(label=':blue[$ \\bold{Descripción\, del\, \\newline estudio\, ministerial}  $]', value=v[7][14:], key=claveEstMin+'Descripción')
+                st.write('')
+                st.write('')
+                st.write('***')
+                st.write('')
+                st.write('')
+            except:
+                pass
             
 
     #st.stop()

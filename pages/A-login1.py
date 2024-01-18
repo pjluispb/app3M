@@ -13,10 +13,10 @@ st.set_page_config(
 )
 
 deta = Deta(st.secrets["deta_key"])
-encprof = deta.Base('test01')
+encprof = deta.Base('test02')
 
-st.header('Encuesta Eclesiastica ASIGLEH 2023')
-st.markdown("<h4 style='text-align: left; color: grey;'>Pastorado y Liderazgo</h4>", unsafe_allow_html=True)
+st.header('App3M')
+st.markdown("<h4 style='text-align: left; color: grey;'>ASIGLEH</h4>", unsafe_allow_html=True)
 st.subheader('Iglesia de Los Hermanos - Venezuela')
 
 st.markdown("<h1 style='text-align: center; color: grey;'>Login</h1>", unsafe_allow_html=True)
@@ -39,7 +39,7 @@ with col2:
 
                 st.write(verifregDB.count)
                 st.write(verifregDB.items)
-                switch_page('regdocmin01')
+                switch_page('interface')
 
             else:
                 st.error('''
