@@ -112,7 +112,7 @@ nombreu = reg['nombreu']
 #st.caption('hola-1')
 newvalea, updvalea = [], []
 
-st.write(reg)
+# st.write(reg)
 regresar = st.button('volver', use_container_width=True, key='volver1')
 if regresar: switch_page('interface')
 
