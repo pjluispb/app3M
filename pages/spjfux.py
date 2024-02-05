@@ -97,7 +97,7 @@ regt2 = st.session_state.regt2
 # -------------------------------------------------------------
 try:  #conecta con la DBspj
     regspj = dbspjf.get(key=capi)
-    regspj
+    # regspj
     regrspjpa = dbspjrpa.get(key = claveu)
 except:
     'error conectando a la DBspj'
