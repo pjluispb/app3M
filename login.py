@@ -31,7 +31,9 @@ selected3 = option_menu(None, ["", "Ingresar", "Registro"],
 )
 selected3
 if selected3=='Registro':
-    st.toast('Módulo en Construcción')
+    # st.toast('Módulo en Construcción')
+    st.switch_page('pages/A-regApp3m.py')
 elif selected3=='Ingresar':
-    switch_page('A-login1')
+    # switch_page('A-login1')
+    st.switch_page('pages/A-login1.py')
 
