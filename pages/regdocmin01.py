@@ -5,14 +5,16 @@ import random
 from deta import Deta
 from streamlit_extras.switch_page_button import switch_page
 import datetime
+import time
 
 
 def abrerecursosdeta():
     deta = Deta(st.secrets["deta_key"])
     dbtest = deta.Base('test01')
+    dbtest02 = deta.Base('test02')
     photos = deta.Drive(name='asiglehphotos')
     photosys = deta.Drive(name='modphotos')
-    return(dbtest, photos, photosys)
+    return(dbtest, dbtest02, photos, photosys)
 
 def newElemnt(datTexto, num, cond):  
     # newElemnt(['telefono#', 'texto', 'Teléfono', clavetel, '-'], conttel, 'add')
@@ -99,22 +101,48 @@ def tomaphoto2(nombrepic):
     switch_page('fototest2')
     return
 
-dbtest, photos, photosys = abrerecursosdeta()
+dbtest, dbtest02,  photos, photosys = abrerecursosdeta()
 
 
 rkey = st.session_state['claveu']
 # rkey = '789'
 #rkey = '963'
 #rkey = '111'
-reg = dbtest.get(key=rkey)
-nombreu = reg['nombreu']
+try:
+    reg = dbtest.get(key=rkey)
+    nombreu = reg['nombreu']
+    regtest02 = dbtest02.get(key=rkey)
+    valtest02 = regtest02['mod1']
+except:
+    with st.spinner('Lo sentimos, usuario No registrado...'):
+        st.toast('Usuario NO registrado')
+        st.toast('Redirigido al módulo de arranque')
+        st.toast('Por favor Regístrese')
+        time.sleep(10)
+    switch_page('A-login1')
 #nombreu = st.session_state['nombreu']
 #st.caption('hola-1')
 newvalea, updvalea = [], []
 
 # st.write(reg)
+# st.write(valtest02)
+
 regresar = st.button('volver', use_container_width=True, key='volver1')
-if regresar: switch_page('interface')
+if regresar:
+    puntos = 0 
+    for k,v in reg.items():
+        if isinstance(v, list):
+            contador = len(v)
+            puntos+=contador
+        else:
+            puntos+=1
+    st.toast(puntos)
+    
+    dbtest02.update({'mod1':["Datos Ministeriales", "Activo - Editable", str(puntos), "editar", str(puntos), "0"]}, key=rkey)
+    with st.spinner('Wait for it...'):
+        time.sleep(3)
+
+    switch_page('A-login1')
 
 st.markdown(':green[ $ \\bold {Hola \,\,\,' + reg['nombreu'] + '}$]')
 
@@ -387,6 +415,21 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
         
         newregistro = {'Nombres': nombre, 'Apellidos':apellido, 'Nacionalidad': nacionalidad,  'Direccion': direccion, 'Edo_Civil': Edo_Civil,'Edad': edad, 'Teléfonos': ltel, 'Emails': lemail, 'RedesSociales': lredess, 'RelFamCon': lrfcon, 'RelFamPol': lrfpol, 'RelFamAdop': lrfdadop, 'RelFamCrian': lrfdcrian}
 
+        #--------------------------------------------------------------------------------------
+        regper = [nombre, apellido, nacionalidad, direccion, Edo_Civil, ltel, lemail, lredess]
+        regperRev = []
+        for t in regper:
+             boolear = not(t in [None, '', '-', [], ()])
+             regperRev.append(boolear)
+        if regperRev: progresoDM = 15
+        else: progresoDM = random.randint(1,10)
+        st.toast('Status de Progreso en Datos Ministeriales : ')
+        st.toast(progresoDM)
+        st.toast('Actualizando test02')   
+        lmod1 = ["Datos Ministeriales", "Activo-Editable", str(progresoDM), "editar"]
+        dbtest02.update(updates={'mod1':lmod1}, key=rkey)     
+        #--------------------------------------------------------------------------------------
+
         st.write('***')
         st.write(newregistro)
         #st.stop()
@@ -395,7 +438,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
         #st.stop()
 
         st.session_state['clave'] = rkey
-        switch_page('depaso1')
+        switch_page('A-depaso1')
 
     
     st.write('***')
@@ -1304,3 +1347,19 @@ with st.expander(':orange[$\Large Estudios\, eclesiásticos  $]'):
             #
         
 
+regresar2 = st.button('volver', use_container_width=True, key='volver2')
+if regresar2:
+    puntos = 0 
+    for k,v in reg.items():
+        if isinstance(v, list):
+            contador = len(v)
+            puntos+=contador
+        else:
+            puntos+=1
+    st.toast(puntos)
+    
+    dbtest02.update({'mod1':["Datos Ministeriales", "Activo - Editable", str(puntos), "editar", str(puntos), "0"]}, key=rkey)
+    with st.spinner('Wait for it...'):
+        time.sleep(3)
+
+    switch_page('interface')
