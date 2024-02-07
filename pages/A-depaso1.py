@@ -6,7 +6,7 @@ import time
 from streamlit_extras.switch_page_button import switch_page
 
 deta = Deta(st.secrets["deta_key"])
-encuasigleh = deta.Base('asiglehpastores')
+# encuasigleh = deta.Base('asiglehpastores')
 
 clave = st.session_state['clave'] 
 # newvalwork = st.session_state['newvalwork']
@@ -35,5 +35,5 @@ with st.spinner('Espere un momento...'):
     # st.session_state['nombreu'] = nombreu
     # st.session_state['cedulau'] = cedulau
 st.success('Listo!')
-switch_page('A-encupast05edit')
+st.switch_page('pages/regdocmin01.py')
 
