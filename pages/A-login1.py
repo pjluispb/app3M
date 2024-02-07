@@ -28,7 +28,7 @@ with col2:
     with st.form('fregini'):
         st.markdown("<h3 style='text-align: center; color: red;'>Usuario </h2>", unsafe_allow_html=True)
         nombreu = st.text_input(label='nombreu', label_visibility='collapsed')
-        st.markdown("<h3 style='text-align: center; color: red;'>Cédula </h2>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align: center; color: red;'>Clave </h2>", unsafe_allow_html=True)
         claveu = st.text_input(label='clave', label_visibility='collapsed')
         streg, nom, ced = True, nombreu, claveu
         ingresaReg = st.form_submit_button('Enviar')
