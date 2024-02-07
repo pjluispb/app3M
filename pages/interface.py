@@ -57,7 +57,7 @@ if claveu != '919':
         for i in np0:
             #'Módulo :',i[0][0], '  ejecutar :', i[0][3], '  Status :', i[0][1], '   progreso:', i[0][2]
             #st.write(len(i[0][0]))
-            i, acum, i[0][0], len(i[0][0])
+            # i, acum, i[0][0], len(i[0][0])
             if (len(i[0][0]))>1:
                 try : acum+=int(i[0][2])
                 except: acum+=0
