@@ -6,7 +6,7 @@ from deta import Deta
 # import random
 # import io
 # import time
-from streamlit_extras.switch_page_button import switch_page
+# from streamlit_extras.switch_page_button import switch_page
 
 deta = Deta(st.secrets.deta_key)
 photos = deta.Drive(name='asiglehphotos')
@@ -21,6 +21,6 @@ if img_file_buffer is not None:
         photos.put(namepic, bytes_data)
         st.session_state['namepic'] = namepic
     st.success('listo!!!')
-    switch_page('A-encupast05edit')
+    st.switch_page('pages/regdocmin01.py')
 
 
