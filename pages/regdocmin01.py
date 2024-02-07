@@ -98,7 +98,7 @@ def ordenalip(lip, parame):
 def tomaphoto2(nombrepic):
     st.session_state['namepic'] = nombrepic
     st.toast('ejecutando tomaphoto2 '+str(nombrepic))
-    switch_page('fototest2')
+    st.switch_page('pages/fototest2.py')
     return
 
 dbtest, dbtest02,  photos, photosys = abrerecursosdeta()
@@ -119,7 +119,7 @@ except:
         st.toast('Redirigido al módulo de arranque')
         st.toast('Por favor Regístrese')
         time.sleep(10)
-    switch_page('A-login1')
+    st.switch_page('pages/A-login1.py')
 #nombreu = st.session_state['nombreu']
 #st.caption('hola-1')
 newvalea, updvalea = [], []
@@ -142,7 +142,7 @@ if regresar:
     with st.spinner('Wait for it...'):
         time.sleep(3)
 
-    switch_page('A-login1')
+    st.switch_page('pages/A-login1.py')
 
 st.markdown(':green[ $ \\bold {Hola \,\,\,' + reg['nombreu'] + '}$]')
 
@@ -226,7 +226,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
                     st.session_state['fotopersonal'] = npic
                     dbtest.update({'Nombres':nombre, 'Apellidos':apellido, 'Nacionalidad':nacionalidad, 'Edo_Civil':Edo_Civil, 'Edad':edad,'Direccion':direccion,'fotopersonal':namepic}, key=rkey)
                     st.session_state['clave'] = rkey
-                    switch_page('depaso1')
+                    st.switch_page('pages/A-depaso1.py')
     else:
         #'vfotoper = ', vfotoper
         # st.subheader(':green[$\small Foto Personal$]')
@@ -246,7 +246,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
                 st.success('listo!!!')
                 # st.rerun()
                 st.session_state['clave'] = rkey
-                switch_page('depaso1')
+                st.switch_page('pages/A-depaso1.py')
         #st.write('***')
     # st.write('')
     st.subheader(':green[$\small 🆔Foto\,\, de\,\, ID$]')
@@ -283,7 +283,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
                     st.session_state['fotoID'] = npicid
                     dbtest.update({'Nombres':nombre, 'Apellidos':apellido, 'Nacionalidad':nacionalidad, 'Edo_Civil':Edo_Civil, 'Edad':edad,'Direccion':direccion, 'fotoID':idpic}, key=rkey)
                     st.session_state['clave'] = rkey
-                    switch_page('depaso1')
+                    st.switch_page('pages/A-depaso1.py')
     else:
         #vfotoper
         #st.subheader(':green[$\small Foto Personal$]')
@@ -303,7 +303,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
                 st.success('listo!!!')
                 # st.rerun()
                 st.session_state['clave'] = rkey
-                switch_page('depaso1')
+                st.switch_page('pages/A-depaso1.py')
         #st.write('***')
     st.write('')
 
@@ -438,7 +438,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
         #st.stop()
 
         st.session_state['clave'] = rkey
-        switch_page('A-depaso1')
+        st.switch_page('pages/A-depaso1.py')
 
     
     st.write('***')
