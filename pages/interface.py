@@ -51,7 +51,7 @@ if claveu != '919':
         # df0 = pd.DataFrame.from_dict(list(reg.items()), columns=['key', 'Values'])
         #df0
         np0 = df0.to_numpy()
-        np0
+        # np0
         listatodf = []
         acum=0
         for i in np0:
