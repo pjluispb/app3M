@@ -579,7 +579,7 @@ with st.expander(':orange[$ \large Ministerios/iglesia\, que\, preside\, ó\\new
                     dbtest.update(registromin, key= rkey)
                     #st.stop()
         st.session_state['clave']=rkey
-        switch_page('depaso1')       
+        st.switch_page('pages/A-depaso1.py')       
         st.write('===================')
         
 
@@ -636,7 +636,7 @@ with st.expander(':orange[$\Large Testimonio $]'):
         dbtest.update({'testimonio':testimonio}, key=rkey)
         #st.rerun()
         st.session_state['clave']=rkey
-        switch_page('depaso1')
+        st.switch_page('pages/A-depaso1.py')
 
         # 
         # update_reg_dattestimonio(fec_conversion, fec_bautismo_agua, fec_bautismo_Espiritu, testimonio, llamado)
@@ -713,7 +713,7 @@ with st.expander(':orange[$\Large Trabajo\,\, ministerial$] :red[$\\bold(histori
                                 photosys.put(npic, bytes_data)
                             st.success('listo!!!')
                             st.session_state['clave'] = rkey
-                            switch_page('depaso1')
+                            st.switch_page('pages/A-depaso1.py')
                     #st.write('***')
                 st.write('')
                 st.write('')
@@ -816,7 +816,7 @@ with st.expander(':orange[$\Large Trabajo\,\, ministerial$] :red[$\\bold(histori
             st.success('listo!!!')
             dbtest.update({k:[v0t, v1t, v2t, v3t, v4t, v5t]}, key=rkey)
             st.session_state['clave'] = rkey
-            switch_page('depaso1')
+            st.switch_page('pages/A-depaso1.py')
     else: st.session_state['TraMin#'+str(conTraMin)+'foto'] = '-'
     st.write('')
     st.write('***')
@@ -896,7 +896,7 @@ with st.expander(':orange[$\Large Trabajo\,\, ministerial$] :red[$\\bold(histori
                     dbtest.update(registromin, key= rkey)
                     #st.stop()
         st.session_state['clave']=rkey
-        switch_page('depaso1')       
+        st.switch_page('pages/A-depaso1.py')       
         st.write('===================')
             #
 
@@ -1023,7 +1023,7 @@ with st.expander(':orange[$\large  Participación\, actual\\newline en\, los\, m
                     dbtest.update(registromin, key= rkey)
                     #st.stop()
         st.session_state['clave']=rkey
-        switch_page('depaso1')       
+        st.switch_page('pages/A-depaso1.py')       
         st.write('===================')
             #
 
@@ -1091,7 +1091,7 @@ with st.expander(':orange[$\Large Estudios\, eclesiásticos  $]'):
                             st.session_state['EstMin#'+str(conEstMin)+'foto'] = npic
                             dbtest.update({k:v}, key=rkey)
                             st.session_state['clave'] = rkey
-                            switch_page('depaso1')
+                            st.switch_page('pages/A-depaso1.py')
                 else:
                     st.session_state['EstMin#'+str(conEstMin)+'foto'] = v[8]
                     #v[7]
@@ -1111,7 +1111,7 @@ with st.expander(':orange[$\Large Estudios\, eclesiásticos  $]'):
                                 photosys.put(npic, bytes_data)
                             st.success('listo!!!')
                             st.session_state['clave'] = rkey
-                            switch_page('depaso1')
+                            st.switch_page('pages/A-depaso1.py')
 
                 valEstMinDes = st.text_area(label=':blue[$ \\bold{Descripción\, del\, \\newline estudio\, ministerial}  $]', value=v[7][14:], key=claveEstMin+'Descripción')
                 st.write('')
@@ -1236,7 +1236,7 @@ with st.expander(':orange[$\Large Estudios\, eclesiásticos  $]'):
                 #st.stop()
                 dbtest.update({kEstM:[v0t, v1t, v2t, v3t, v4t, v5t, v6t, v7t, v8t]}, key=rkey)
                 st.session_state['clave'] = rkey
-                switch_page('depaso1')
+                st.switch_page('pages/A-depaso1.py')
     else: st.session_state['EstMin#'+str(conEstMin)+'foto'] = '-'
     st.write('')
 
@@ -1342,7 +1342,7 @@ with st.expander(':orange[$\Large Estudios\, eclesiásticos  $]'):
         #             dbtest.update(registroemin, key= rkey)
         # st.stop()
         st.session_state['clave']=rkey
-        switch_page('depaso1')       
+        st.switch_page('pages/A-depaso1.py')       
         # st.write('===================')
             #
         
@@ -1362,4 +1362,4 @@ if regresar2:
     with st.spinner('Wait for it...'):
         time.sleep(3)
 
-    switch_page('interface')
+    st.switch_page('pages/interface.py')
