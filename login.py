@@ -25,7 +25,7 @@ selected3 = option_menu(None, ["", "Ingresar", "Registro"],
     styles={
         "container": {"padding": "0!important", "background-color": "#4346dc"},
         "icon": {"color": "orange", "font-size": "25px"}, 
-        "nav-link": {"font-size": "25px", "text-align": "left", "margin":"0px", "--hover-color": "#4fdc43"},
+        "nav-link": {"font-size": "20px", "text-align": "left", "margin":"2px", "--hover-color": "#4fdc43"},
         "nav-link-selected": {"background-color": "green"},
     }
 )
