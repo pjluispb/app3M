@@ -45,58 +45,21 @@ if vercodinv_out in ['app3M-Merida', 'test102023', 'test2024']:
             st.toast('buscando')
             regt1 = bdtest01.get(key=claveu)
             regt2 = bdtest02.get(key=claveu)
-            regt1
-            regt2
+            #regt1
+            #regt2
             if regt1==None and regt2==None:
-                st.toast('Excelente')
-                st.toast(' Se creara un nuevo usuario ')
+                st.toast('Excelente!!!')
+                #st.toast(' Se creara un nuevo usuario ')
                 st.toast(' Bienvenido ')
                 bdtest01.put(data={'nombreu':nombreu}, key= claveu)
                 bdtest02.put(data={ "mod1": ["Datos Ministeriales", "Activo - Editable", "0", "editar", "0", "0"],"mod2": ["Siguiendo las pisadas... - Capítulo 1", "en espera", "0", "editar", "0", "30" ], "mod3": ["Siguiendo las pisadas... - Capítulo 2", "en espera", "0", "editar", "0", "70" ], "mod4": ["Siguiendo las pisadas... - Capítulo 3", "en espera", "0", "editar", "0", "150" ],"mod5": ["Siguiendo las pisadas... - Capítulo 4", "en espera", "0", "editar", "0", "250" ],"mod6": ["Siguiendo las pisadas... - Capítulo 5", "en espera", "0", "bloqueado", "0", "300" ],"nombreu": nombreu}, key= claveu,)
+                st.switch_page('pages/A-login1.py')
                 #dbtest.put(data={k:nnnv}, key=rkey)
-
-                #newregistro = {'Nombres': nombre, 'Apellidos':apellido, 'Nacionalidad': nacionalidad,  'Direccion': direccion, 'Edo_Civil': Edo_Civil,'Edad': edad, 'Teléfonos': ltel, 'Emails': lemail, 'RedesSociales': lredess, 'RelFamCon': lrfcon, 'RelFamPol': lrfpol, 'RelFamAdop': lrfdadop, 'RelFamCrian': lrfdcrian}
-                #dbtest.update(updates=newregistro, key=rkey)
-                fielde = ["Apellidos:"+ "","Direccion:"+ "","Edad:0","Edo_Civil:"+ "","Emails: []",]
-                #bdtest01.put(data={fielde}, key=clave)
-	# "EstMin#1": [],
-	# "EstMin#2": [],
-	# "EstMin#3": [],
-	# "IgleMin#1": [],
-	# "IgleMin#2": [],
-	# "IgleMin#3": [],
-	# "Nacionalidad": "",
-	# "Nombres": "",
-	# "ParMinHoy#1": [],
-	# "ParMinHoy#2": [],
-	# "ParMinHoy#3": [],
-	# "ParMinHoy#4": [],
-	# "ParMinHoy#5": [],
-	# "RedesSociales": [],
-	# "RelFamAdop": [],
-	# "RelFamCon": [],
-	# "RelFamCrian": [],
-	# "RelFamPol": [],
-	# "Teléfonos": [],
-	# "TraMin#1": [],
-	# "TraMin#2": [],
-	# "TraMin#3": [],
-	# "TraMin#4": [],
-	# "cedulau": "",
-	# "color": "",
-	# "foto": "",
-	# "fotoID": "",
-	# "fotopersonal": "",
-	# "nombreu": "invitadoe",
-	# "number": 0,
-	# "rc#1": [],
-	# "rc#2": [],
-	# "rol": "",
-	# "testimonio": []
-    #             ]
-                #dbtest.put(data={k:nnnv}, key=rkey)...nnnv=lista[...]
-
+                #fielde = ["Apellidos:"+ "","Direccion:"+ "","Edad:0","Edo_Civil:"+ "","Emails: []",]
             else:
                 st.toast('Alguno de los datos ingresados ya está registrado')
                 st.toast('INTENTE con otros datos')
-            
+else:
+    st.toast('Código inválido')     
+    st.error('Código inválido. Ingrese nuevamente el código de invitación')   
+    
