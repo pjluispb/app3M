@@ -426,7 +426,7 @@ with st.expander(':orange[$\Large Datos\, Personales$]'):
         st.toast('Status de Progreso en Datos Ministeriales : ')
         st.toast(progresoDM)
         st.toast('Actualizando test02')   
-        lmod1 = ["Datos Ministeriales", "Activo-Editable", str(progresoDM), "editar"]
+        lmod1 = ["Datos Ministeriales", "Activo-Editable", str(progresoDM), "editar", str(progresoDM), "0"]
         dbtest02.update(updates={'mod1':lmod1}, key=rkey)     
         #--------------------------------------------------------------------------------------
 
