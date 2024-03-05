@@ -33,7 +33,7 @@ with ph1:
     with col2:
         vercodinv = st.text_input('Ingrese el código de invitación', label_visibility='collapsed')
 vercodinv_out=vercodinv
-if vercodinv_out in ['app3M-Merida', 'test102023', 'test2024']:
+if vercodinv_out in ['app3M-Merida', 'test102023', 'test2024', 'Asigleh2024']:
     ph1.empty()
     with st.form('fregini'):
         nombreu = st.text_input('Ingrese un nombre de usuario')
